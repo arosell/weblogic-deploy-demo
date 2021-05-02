@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+    demo:
+        build: .
+        image: weblogic_deploy_war:0.0.1
+        ports:
+            - 7001:7001
+            - 9002:9002
+        environment:
+            - DOMAIN_NAME=base_domain
+        volumes:
+            - type: bind
+              source: ./properties/domain.properties
+              target: /u01/oracle/properties/domain.properties
+              read_only: false

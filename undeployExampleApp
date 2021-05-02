@@ -1,0 +1,3 @@
+#!/bin/sh
+curl -v --insecure --user adminuser:weblogic1 -H X-Requested-By:MyClient -H Content-Type:application/json \
+     -X DELETE https://localhost:9002/management/wls/latest/deployments/application/id/ExampleApp

@@ -1,0 +1,10 @@
+#!/bin/sh
+#export CLASSPATH=/u01/oracle/wlserver/server/lib/weblogic.jar
+#java -Dweblogic.security.SSL.ignoreHostnameVerification=true weblogic.Deployer -verbose -noexit -adminurl t3://localhost:9002 -username adminuser -password weblogic1 -deploy -upload /usr/app/ExampleApp.war
+
+curl -v --insecure --user adminuser:weblogic1 -H X-Requested-By:MyClient -H Content-Type:application/json \
+     -d "{ name: 'ExampleApp', sourcePath: '/usr/app/ExampleApp.war', targets: [ { identity: [ 'servers', 'AdminServer' ] } ] }" \
+     -X POST https://localhost:9002/management/weblogic/latest/edit/appDeployments
+
+#curl -v --insecure --user adminuser:weblogic1 -H X-Requested-By:MyClient -H Content-Type:application/json \
+#     -X POST https://localhost:9002/management/wls/latest/deployments/application/id/ExampleApp/start
